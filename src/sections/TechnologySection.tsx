@@ -139,7 +139,7 @@ export default function TechnologySection() {
             </span>
           </h2>
           <p className="text-white/50 text-base sm:text-lg max-w-2xl mx-auto px-2 sm:px-0">
-            Pioneering visual leverage with robotic precision.
+            Pioneering the future of wall art with cutting-edge robotic printing technology
           </p>
         </div>
 

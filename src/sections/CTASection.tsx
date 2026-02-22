@@ -77,17 +77,17 @@ export default function CTASection() {
 
           {/* Headline */}
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 leading-tight">
-            <span className="text-white">STOP </span>
+            <span className="text-white">Ready to </span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8B5CF6] via-[#A78BFA] to-[#8B5CF6]">
-              WASTING
+              Transform
             </span>
             <br />
-            <span className="text-white">YOUR WALLS</span>
+            <span className="text-white">Your Space?</span>
           </h2>
 
           {/* Subtext */}
           <p className="text-base sm:text-xl text-white/60 max-w-2xl mx-auto mb-8 sm:mb-12 px-2 sm:px-0">
-            You have the space. You have the brand. Now get the attention you deserve. Let's build your visual leverage.
+            Let's create something extraordinary together. Your walls are waiting to tell your story.
           </p>
 
           {/* CTA Buttons */}

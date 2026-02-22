@@ -9,29 +9,29 @@ const steps = [
   {
     number: '01',
     icon: MessageSquare,
-    title: 'Strategy',
-    description: 'We audit your brand and space. No guessing. We find the high-leverage visual angle.',
+    title: 'Consultation',
+    description: 'We begin with understanding your vision, brand identity, and space requirements. Our team listens to your ideas and provides expert guidance.',
     color: '#8B5CF6',
   },
   {
     number: '02',
     icon: Pencil,
-    title: 'The Blueprint',
-    description: 'Precision mockups. We refine until the design practically screams your authority.',
+    title: 'Design & Concept',
+    description: 'Our artists create detailed mockups and concepts tailored to your space. We refine every detail until it matches your vision perfectly.',
     color: '#A78BFA',
   },
   {
     number: '03',
     icon: Paintbrush,
-    title: 'The Attack',
-    description: 'Robotic precision meets elite artistry. We transform your walls faster than you thought possible.',
+    title: 'Execution',
+    description: 'With precision and artistry, we bring the design to life. Using premium materials and techniques for flawless results.',
     color: '#8B5CF6',
   },
   {
     number: '04',
     icon: CheckCircle,
-    title: 'The Win',
-    description: 'Final audit. Every line must be perfect. You get the space. We get the results.',
+    title: 'Final Review',
+    description: 'We ensure every detail meets our perfection standards. Your satisfaction is our ultimate goal.',
     color: '#6D28D9',
   },
 ];
@@ -149,7 +149,7 @@ export default function ProcessSection() {
             </span>
           </h2>
           <p className="text-white/50 text-base sm:text-lg max-w-2xl mx-auto px-2 sm:px-0">
-            Fast. Clean. Perfect. We don't do "slow." We get in, transform, and get out.
+            A refined four-step journey from vision to reality
           </p>
         </div>
 

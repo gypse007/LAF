@@ -111,19 +111,19 @@ export default function ManifestoSection() {
         <div className="space-y-2 sm:space-y-4 mb-10 sm:mb-16">
           <div ref={line1Ref} className="manifesto-word">
             <span className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#8B5CF6] via-[#A78BFA] to-[#8B5CF6]">
-              WE HATE
+              DESIGN
             </span>
           </div>
 
           <div ref={line2Ref} className="manifesto-word">
             <span className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white/90">
-              AVERAGE.
+              DETAIL
             </span>
           </div>
 
           <div ref={line3Ref} className="manifesto-word">
             <span className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#6D28D9]">
-              FIX YOUR WALLS.
+              PERFECTION
             </span>
           </div>
         </div>
@@ -133,9 +133,9 @@ export default function ManifestoSection() {
           ref={descRef}
           className="text-base sm:text-xl md:text-2xl text-white/60 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0"
         >
-          Most walls are wasted space. We fix that. We build
-          <span className="text-[#8B5CF6]"> visual leverage</span>. Every stroke is calculated.
-          Every color has purpose. Perfection by default.
+          At Lakshmi Art Fixes, we don't just paint walls. We transform spaces into
+          <span className="text-[#8B5CF6]"> living art</span>. Every stroke is calculated,
+          every color chosen with purpose, every detail crafted to perfection.
         </p>
 
         {/* Decorative line */}

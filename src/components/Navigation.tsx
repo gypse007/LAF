@@ -3,10 +3,10 @@ import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
-  { label: 'Value', href: '#services' },
+  { label: 'What We Do', href: '#services' },
   { label: 'Our Work', href: '#work' },
-  { label: 'Process', href: '#process' },
-  { label: 'Proof', href: '#beforeafter' },
+  { label: 'How It Works', href: '#process' },
+  { label: 'Results', href: '#beforeafter' },
   { label: 'Contact', href: '#contact' },
 ];
 

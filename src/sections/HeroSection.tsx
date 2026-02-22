@@ -89,20 +89,15 @@ export default function HeroSection() {
         <div ref={contentRef} className="max-w-4xl pointer-events-auto">
           {/* Main Title */}
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[0.9] tracking-tight">
-            <span className="word inline-block">WE</span>{' '}
+            <span className="word inline-block">REDEFINING</span>{' '}
             <span className="word inline-block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
-              UN-BORE
-            </span>
-            <br />
-            <span className="word inline-block">YOUR</span>{' '}
-            <span className="word inline-block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
-              WALLS
+              SPACES
             </span>
           </h1>
 
           {/* Subtitle / Description */}
           <p className="hero-desc text-gray-300 text-lg sm:text-xl md:text-2xl max-w-2xl mb-10 leading-relaxed font-light">
-            Stop settling for blank space. We turn your walls into high-performance brand assets. Precision art. Zero fluff. 100% Impact.
+            Where art meets architecture. We craft immersive environments that define your story with precision-crafted artistry.
           </p>
 
           {/* CTA Buttons */}
