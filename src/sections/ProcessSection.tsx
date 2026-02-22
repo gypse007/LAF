@@ -9,29 +9,29 @@ const steps = [
   {
     number: '01',
     icon: MessageSquare,
-    title: 'Consultation',
-    description: 'We begin with understanding your vision, brand identity, and space requirements. Our team listens to your ideas and provides expert guidance.',
+    title: 'Strategy',
+    description: 'We audit your brand and space. No guessing. We find the high-leverage visual angle.',
     color: '#8B5CF6',
   },
   {
     number: '02',
     icon: Pencil,
-    title: 'Design & Concept',
-    description: 'Our artists create detailed mockups and concepts tailored to your space. We refine every detail until it matches your vision perfectly.',
+    title: 'The Blueprint',
+    description: 'Precision mockups. We refine until the design practically screams your authority.',
     color: '#A78BFA',
   },
   {
     number: '03',
     icon: Paintbrush,
-    title: 'Execution',
-    description: 'With precision and artistry, we bring the design to life. Using premium materials and techniques for flawless results.',
+    title: 'The Attack',
+    description: 'Robotic precision meets elite artistry. We transform your walls faster than you thought possible.',
     color: '#8B5CF6',
   },
   {
     number: '04',
     icon: CheckCircle,
-    title: 'Final Review',
-    description: 'We ensure every detail meets our perfection standards. Your satisfaction is our ultimate goal.',
+    title: 'The Win',
+    description: 'Final audit. Every line must be perfect. You get the space. We get the results.',
     color: '#6D28D9',
   },
 ];
@@ -87,10 +87,10 @@ export default function ProcessSection() {
       stepElements?.forEach((step, index) => {
         const isEven = index % 2 === 0;
         const isMobile = window.innerWidth < 1024;
-        
+
         gsap.fromTo(step,
-          { 
-            x: isMobile ? 0 : (isEven ? -100 : 100), 
+          {
+            x: isMobile ? 0 : (isEven ? -100 : 100),
             y: isMobile ? 50 : 0,
             opacity: 0,
           },
@@ -149,7 +149,7 @@ export default function ProcessSection() {
             </span>
           </h2>
           <p className="text-white/50 text-base sm:text-lg max-w-2xl mx-auto px-2 sm:px-0">
-            A refined four-step journey from vision to reality
+            Fast. Clean. Perfect. We don't do "slow." We get in, transform, and get out.
           </p>
         </div>
 
@@ -158,7 +158,7 @@ export default function ProcessSection() {
           {/* Center Line - Desktop Only */}
           <div className="absolute left-4 sm:left-6 lg:left-1/2 top-0 bottom-0 w-px lg:-translate-x-1/2">
             <div className="absolute inset-0 bg-white/10" />
-            <div 
+            <div
               ref={lineRef}
               className="hidden lg:block absolute inset-x-0 top-0 bg-gradient-to-b from-[#8B5CF6] via-[#A78BFA] to-[#8B5CF6] origin-top"
               style={{ height: '100%' }}
@@ -170,17 +170,16 @@ export default function ProcessSection() {
             {steps.map((step, index) => {
               const Icon = step.icon;
               const isEven = index % 2 === 0;
-              
+
               return (
                 <div
                   key={index}
-                  className={`process-step relative flex items-start gap-6 sm:gap-8 lg:gap-0 ${
-                    isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                  }`}
+                  className={`process-step relative flex items-start gap-6 sm:gap-8 lg:gap-0 ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                    }`}
                 >
                   {/* Step Number - Mobile/Tablet */}
                   <div className="lg:hidden flex-shrink-0">
-                    <div 
+                    <div
                       className="step-number w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-[#8B5CF6] to-[#6D28D9] text-black font-bold text-sm sm:text-lg"
                     >
                       {step.number}

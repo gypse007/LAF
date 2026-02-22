@@ -115,7 +115,7 @@ export default function TechnologySection() {
       <div className="absolute bottom-0 right-0 w-40 h-40 sm:w-80 sm:h-80 bg-[#8B5CF6]/5 rounded-full blur-[60px] sm:blur-[120px]" />
 
       {/* Grid Pattern */}
-      <div 
+      <div
         className="absolute inset-0 opacity-[0.02]"
         style={{
           backgroundImage: `
@@ -139,7 +139,7 @@ export default function TechnologySection() {
             </span>
           </h2>
           <p className="text-white/50 text-base sm:text-lg max-w-2xl mx-auto px-2 sm:px-0">
-            Pioneering the future of wall art with cutting-edge robotic printing technology
+            Pioneering visual leverage with robotic precision.
           </p>
         </div>
 
@@ -174,14 +174,17 @@ export default function TechnologySection() {
 
           {/* Right - Visual */}
           <div className="relative">
-            <div className="relative aspect-square rounded-xl sm:rounded-2xl overflow-hidden border border-[#8B5CF6]/20">
-              <img
-                src="/images/logo.png"
-                alt="Wall Printing Technology"
+            <div className="relative aspect-square rounded-xl sm:rounded-2xl overflow-hidden border border-[#8B5CF6]/20 bg-black">
+              <video
+                src="/videos/precision-video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-              
+
               {/* Floating Badge */}
               <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 p-3 sm:p-4 rounded-xl border border-[#8B5CF6]/30 bg-black/60 backdrop-blur-xl">
                 <div className="flex items-center gap-2 sm:gap-3">
@@ -214,14 +217,14 @@ export default function TechnologySection() {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-[#8B5CF6]/10 flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-[#8B5CF6] group-hover:text-black transition-all duration-500 text-[#8B5CF6]">
                   <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                
+
                 <div className="text-2xl sm:text-3xl font-bold text-[#8B5CF6] mb-1">
                   {feature.stat}
                 </div>
                 <div className="text-xs sm:text-sm text-white/40 mb-2 sm:mb-3">
                   {feature.statLabel}
                 </div>
-                
+
                 <h3 className="text-base sm:text-lg font-bold text-white mb-1 sm:mb-2 group-hover:text-[#8B5CF6] transition-colors">
                   {feature.title}
                 </h3>

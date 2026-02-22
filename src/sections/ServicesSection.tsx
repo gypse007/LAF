@@ -6,43 +6,43 @@ gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
-    title: 'Wall Branding',
-    description: 'Transform ordinary walls into powerful brand statements with precision-crafted artwork.',
+    title: 'Brand Domination',
+    description: 'Stop being invisible. We turn your walls into high-performance assets.',
     image: '/icons/wall-branding.png',
     gridArea: 'wall',
     size: 'tall' as const,
   },
   {
-    title: 'Texture & Effects',
-    description: 'Advanced painting techniques including textures, gradients, and special effects.',
+    title: 'Texture Alpha',
+    description: 'Advanced gradients and textures. Not just paint—depth.',
     image: '/icons/diamond.png',
     gridArea: 'comm',
     size: 'wide' as const,
   },
   {
-    title: 'Commercial Spaces',
-    description: 'Elevate offices, retail stores, and commercial properties with professional wall art.',
+    title: 'Scale Up',
+    description: 'High-speed execution for retail and offices. Zero downtime.',
     image: '/icons/commercial-store.png',
     gridArea: 'texture',
     size: 'normal' as const,
   },
   {
-    title: 'Precision Work',
-    description: 'Meticulous attention to detail ensuring every line, curve, and color is perfect.',
+    title: 'Precision Only',
+    description: 'Millimeter accuracy. No mistakes. Only perfection.',
     image: '/icons/precision-work.png',
     gridArea: 'prec',
     size: 'normal' as const,
   },
   {
-    title: 'Lasting Impressions',
-    description: 'Creating memorable visual experiences that stand the test of time and leave a mark.',
+    title: 'Legacy Murals',
+    description: 'Art that outlasts your building. Permanent authority.',
     image: '/icons/protective-coating.png',
     gridArea: 'coat',
     size: 'wide' as const,
   },
   {
-    title: 'Residential Projects',
-    description: 'Personalized art installations that turn houses into dream homes with unique character.',
+    title: 'Elite Homes',
+    description: 'Custom character for high-end residential spaces.',
     image: '/images/residential.png',
     gridArea: 'resi',
     size: 'normal' as const,
@@ -242,7 +242,7 @@ export default function ServicesSection() {
             </span>
           </h2>
           <p className="text-gray-500 text-base sm:text-lg max-w-sm lg:pt-3 leading-relaxed">
-            From concept to completion, every piece is crafted to transform your spaces and amplify your brand.
+            We build visual leverage. Direct-to-wall branding that forces attention. Scale your space. Dominate your niche.
           </p>
         </div>
 

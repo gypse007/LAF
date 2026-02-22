@@ -51,7 +51,7 @@ export default function LoadingScreen({ onLoadComplete }: LoadingScreenProps) {
             <img
               src="/images/logo-no-bg.png"
               alt="LAF"
-              className="w-48 h-48 sm:w-64 sm:h-64 object-contain mx-auto"
+              className="w-32 h-32 sm:w-48 sm:h-48 object-contain mx-auto"
             />
           </div>
         </div>

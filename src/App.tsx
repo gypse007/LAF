@@ -12,7 +12,6 @@ import ProcessSection from './sections/ProcessSection';
 import WorkSection from './sections/WorkSection';
 import TechnologySection from './sections/TechnologySection';
 import BeforeAfterSection from './sections/BeforeAfterSection';
-import TestimonialsSection from './sections/TestimonialsSection';
 import CTASection from './sections/CTASection';
 import Footer from './components/Footer';
 
@@ -77,7 +76,6 @@ function App() {
         <WorkSection />
         <TechnologySection />
         <BeforeAfterSection />
-        <TestimonialsSection />
         <CTASection />
         <Footer />
       </main>

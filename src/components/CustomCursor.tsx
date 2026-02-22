@@ -62,8 +62,8 @@ export default function CustomCursor() {
 
   return (
     <>
-      <div ref={dotRef} className="cursor-dot hidden md:block" />
-      <div ref={outlineRef} className="cursor-outline hidden md:block" />
+      <div ref={dotRef} className="cursor-dot hidden md:block" style={{ zIndex: 100000 }} />
+      <div ref={outlineRef} className="cursor-outline hidden md:block" style={{ zIndex: 99999 }} />
     </>
   );
 }

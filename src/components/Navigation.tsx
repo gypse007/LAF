@@ -3,11 +3,10 @@ import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
-  { label: 'What We Do', href: '#services' },
+  { label: 'Value', href: '#services' },
   { label: 'Our Work', href: '#work' },
-  { label: 'How It Works', href: '#process' },
-  { label: 'Results', href: '#beforeafter' },
-  { label: 'Reviews', href: '#testimonials' },
+  { label: 'Process', href: '#process' },
+  { label: 'Proof', href: '#beforeafter' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -60,7 +59,7 @@ export default function Navigation() {
                 <button
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
-                  className={`relative text-sm transition-colors duration-300 group ${isScrolled ? 'text-gray-600 hover:text-black' : 'text-white/60 hover:text-white'}`}
+                  className={`relative text-sm transition-colors duration-300 group ${isScrolled ? 'text-gray-600 hover:text-black' : 'text-gray-800 hover:text-black'}`}
                 >
                   {link.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gradient-to-r from-violet-500 to-cyan-500 transition-all duration-300 group-hover:w-full" />
@@ -83,7 +82,7 @@ export default function Navigation() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`lg:hidden w-10 h-10 flex items-center justify-center ${isScrolled ? 'text-black' : 'text-white'}`}
+              className={`lg:hidden w-10 h-10 flex items-center justify-center ${isScrolled ? 'text-black' : 'text-gray-900'}`}
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

@@ -8,27 +8,27 @@ gsap.registerPlugin(ScrollTrigger);
 const beforeAfterProjects = [
   {
     id: 1,
-    title: 'Office Transformation',
-    description: 'From dull white walls to vibrant brand storytelling',
-    beforeImage: '/images/3d wall design.jpg',
-    afterImage: '/images/3d wall design.jpg',
-    improvements: ['Brand Colors', '3D Effects', 'UV Protection'],
+    title: 'Cafe Transformation',
+    description: 'Transforming a minimalist space into a high-end artistic lounge',
+    beforeImage: '/images/transformations/before-cafe.jpeg',
+    afterImage: '/images/transformations/after-cafe.jpeg',
+    improvements: ['Immersive Mural', 'Premium Lighting', 'Atmospheric Texture'],
   },
   {
     id: 2,
-    title: 'Retail Space Makeover',
-    description: 'Creating an immersive shopping experience',
-    beforeImage: '/images/3d wall design.jpg',
-    afterImage: '/images/3d wall design.jpg',
-    improvements: ['Texture Finish', 'Custom Graphics', 'Easy Clean'],
+    title: 'Elite Gym Transformation',
+    description: 'Injecting high-octane energy into a sterile industrial workout space',
+    beforeImage: '/images/transformations/after-gym.jpeg',
+    afterImage: '/images/transformations/before-gym.jpeg',
+    improvements: ['Motivational Graphics', 'High-Impact Colors', 'Scuff-Resistant Finish'],
   },
   {
     id: 3,
-    title: 'Restaurant Ambiance',
-    description: 'Setting the mood with artistic wall treatments',
-    beforeImage: '/images/3d wall design.jpg',
-    afterImage: '/images/3d wall design.jpg',
-    improvements: ['Ambient Design', 'Food-Safe Coating', 'Durability'],
+    title: 'Urban Restro-Bar',
+    description: 'Curation of a sophisticated nightlife vibe through custom wall treatments',
+    beforeImage: '/images/transformations/before-restrobar.jpeg',
+    afterImage: '/images/transformations/after-restrobar.jpeg',
+    improvements: ['Thematic Depth', 'Ambient Interaction', 'Luxury Aesthetic'],
   },
 ];
 
@@ -67,7 +67,7 @@ function ComparisonSlider({ beforeImage, afterImage, title, description, improve
       {/* Comparison Container */}
       <div
         ref={containerRef}
-        className="relative h-[250px] sm:h-[350px] md:h-[400px] lg:h-[500px] rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden cursor-ew-resize group"
+        className="relative aspect-video rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden cursor-ew-resize group"
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
@@ -246,7 +246,7 @@ export default function BeforeAfterSection() {
             </span>
           </h2>
           <p className="text-white/50 text-base sm:text-lg max-w-2xl mx-auto px-2 sm:px-0">
-            Drag to reveal the stunning transformations we create. 
+            Drag to reveal the stunning transformations we create.
             See how we turn ordinary spaces into extraordinary experiences.
           </p>
         </div>
