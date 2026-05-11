@@ -65,17 +65,17 @@ export default function WorkSection() {
       className="relative min-h-screen py-20 sm:py-32 overflow-hidden bg-[#060612]"
     >
       {/* Background Glow */}
-      <div className="absolute top-0 right-0 w-48 h-48 sm:w-96 sm:h-96 bg-[#8B5CF6]/10 rounded-full blur-[80px] sm:blur-[150px]" />
+      <div className="absolute top-0 right-0 w-48 h-48 sm:w-96 sm:h-96 bg-[#C9A962]/10 rounded-full blur-[80px] sm:blur-[150px]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 h-full flex flex-col">
         {/* Section Title */}
         <div ref={titleRef} className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 sm:mb-16">
           <div>
-            <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#8B5CF6]/30 text-[#8B5CF6] text-xs sm:text-sm tracking-widest uppercase mb-4 sm:mb-6">
+            <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#C9A962]/30 text-[#C9A962] text-xs sm:text-sm tracking-widest uppercase mb-4 sm:mb-6">
               Portfolio
             </span>
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white">
-              Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA]">Creations</span>
+              Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A962] to-[#E8D5A3]">Creations</span>
             </h2>
           </div>
           <p className="text-gray-400 text-base sm:text-lg max-w-md mt-4 sm:mt-6 md:mt-0">
@@ -98,7 +98,7 @@ export default function WorkSection() {
 
         {/* Instructions */}
         <div className="mt-8 text-center sm:hidden">
-          <p className="text-[#8B5CF6]/60 text-xs tracking-widest uppercase animate-pulse">
+          <p className="text-[#C9A962]/60 text-xs tracking-widest uppercase animate-pulse">
             Swipe to explore
           </p>
         </div>

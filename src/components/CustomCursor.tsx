@@ -6,7 +6,7 @@ export default function CustomCursor() {
   const outlineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Check if touch device
+    // Only run on non-touch, non-mobile
     const isTouch = window.matchMedia('(pointer: coarse)').matches;
     if (isTouch) return;
 
@@ -14,33 +14,49 @@ export default function CustomCursor() {
     const outline = outlineRef.current;
     if (!dot || !outline) return;
 
+    let rafId: number;
+
     const moveCursor = (e: MouseEvent) => {
-      gsap.to(dot, {
-        x: e.clientX - 4,
-        y: e.clientY - 4,
-        duration: 0.1,
-        ease: 'power2.out',
-      });
-      gsap.to(outline, {
-        x: e.clientX - 20,
-        y: e.clientY - 20,
-        duration: 0.15,
-        ease: 'power2.out',
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        gsap.to(dot, {
+          x: e.clientX - 4,
+          y: e.clientY - 4,
+          duration: 0.08,
+          ease: 'power2.out',
+          overwrite: true,
+        });
+        gsap.to(outline, {
+          x: e.clientX - 20,
+          y: e.clientY - 20,
+          duration: 0.18,
+          ease: 'power2.out',
+          overwrite: true,
+        });
       });
     };
 
     const handleMouseEnter = () => {
-      outline.classList.add('hover');
+      gsap.to(outline, { scale: 1.6, opacity: 0.8, duration: 0.25, ease: 'power2.out' });
     };
 
     const handleMouseLeave = () => {
-      outline.classList.remove('hover');
+      gsap.to(outline, { scale: 1, opacity: 1, duration: 0.25, ease: 'power2.out' });
+    };
+
+    const handleMouseDown = () => {
+      gsap.to([dot, outline], { scale: 0.75, duration: 0.1 });
+    };
+
+    const handleMouseUp = () => {
+      gsap.to([dot, outline], { scale: 1, duration: 0.15 });
     };
 
     window.addEventListener('mousemove', moveCursor);
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
 
-    // Add hover effect to interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, .magnetic-btn, .card-3d');
+    const interactiveElements = document.querySelectorAll('a, button, [role="button"]');
     interactiveElements.forEach((el) => {
       el.addEventListener('mouseenter', handleMouseEnter);
       el.addEventListener('mouseleave', handleMouseLeave);
@@ -48,6 +64,9 @@ export default function CustomCursor() {
 
     return () => {
       window.removeEventListener('mousemove', moveCursor);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
+      cancelAnimationFrame(rafId);
       interactiveElements.forEach((el) => {
         el.removeEventListener('mouseenter', handleMouseEnter);
         el.removeEventListener('mouseleave', handleMouseLeave);
@@ -55,15 +74,14 @@ export default function CustomCursor() {
     };
   }, []);
 
-  // Don't render on touch devices
   if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
     return null;
   }
 
   return (
     <>
-      <div ref={dotRef} className="cursor-dot hidden md:block" style={{ zIndex: 100000 }} />
-      <div ref={outlineRef} className="cursor-outline hidden md:block" style={{ zIndex: 99999 }} />
+      <div ref={dotRef} className="cursor-dot hidden md:block" />
+      <div ref={outlineRef} className="cursor-outline hidden md:block" />
     </>
   );
 }

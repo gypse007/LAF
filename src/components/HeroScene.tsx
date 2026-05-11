@@ -114,7 +114,7 @@ const fragmentShader = `
     // ── Edge glow at reveal boundary ──
     float edgeGlow = smoothstep(revealRadius - feather * 0.5, revealRadius, dist)
                    * (1.0 - smoothstep(revealRadius, revealRadius + feather * 0.5, dist));
-    finalColor += edgeGlow * vec3(0.545, 0.361, 0.965) * 0.15 * uProgress; // Violet edge
+    finalColor += edgeGlow * vec3(0.788, 0.663, 0.384) * 0.15 * uProgress; // Gold edge
 
     // ── Subtle vignette ──
     float vignette = 1.0 - smoothstep(0.4, 1.4, length(vUv - 0.5));

@@ -39,7 +39,7 @@ export default function Navigation() {
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 sm:h-24 lg:h-28">
+          <div className="flex items-center justify-between h-28 sm:h-32 lg:h-36">
             {/* Logo */}
             <a
               href="#"
@@ -49,7 +49,7 @@ export default function Navigation() {
               <img
                 src="/images/logo-no-bg.png"
                 alt="LAF"
-                className="h-36 sm:h-48 lg:h-60 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                className="h-24 sm:h-28 lg:h-36 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
               />
             </a>
 
@@ -62,7 +62,7 @@ export default function Navigation() {
                   className={`relative text-sm transition-colors duration-300 group ${isScrolled ? 'text-gray-600 hover:text-black' : 'text-gray-800 hover:text-black'}`}
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gradient-to-r from-violet-500 to-cyan-500 transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gradient-to-r from-[#C9A962] to-[#9A7B3D] transition-all duration-300 group-hover:w-full" />
                 </button>
               ))}
             </div>
@@ -73,7 +73,7 @@ export default function Navigation() {
                 href="https://wa.me/918019818999?text=Hi%20Laksmi%20Art%20Fixes%20Team%2C%0AI%E2%80%99m%20interested%20in%20commercial%20wall%20branding%20for%20my%20space.%0A%0A%F0%9F%93%8D%20Location%3A%0A%F0%9F%8F%A2%20Business%20Type%3A%0A%F0%9F%93%90%20Approx%20Wall%20Area%3A%0A%F0%9F%93%85%20Expected%20Completion%20Date%3A"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-medium text-sm hover:from-violet-500 hover:to-cyan-500 transition-all duration-300 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)] inline-block"
+                className="px-4 py-2 rounded-full bg-gradient-to-r from-[#C9A962] to-[#9A7B3D] text-white font-medium text-sm hover:from-[#E8D5A3] hover:to-[#C9A962] transition-all duration-300 hover:shadow-[0_0_20px_rgba(201,169,98,0.3)] inline-block"
               >
                 Start Project
               </a>
@@ -110,7 +110,7 @@ export default function Navigation() {
                 <button
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
-                  className="block w-full text-left py-3 text-lg sm:text-xl text-white/80 hover:text-violet-400 transition-colors duration-300 border-b border-white/5"
+                  className="block w-full text-left py-3 text-lg sm:text-xl text-white/80 hover:text-[#C9A962] transition-colors duration-300 border-b border-white/5"
                   style={{ transitionDelay: `${index * 50}ms` }}
                 >
                   {link.label}
@@ -122,7 +122,7 @@ export default function Navigation() {
                 href="https://wa.me/918019818999?text=Hi%20Laksmi%20Art%20Fixes%20Team%2C%0AI%E2%80%99m%20interested%20in%20commercial%20wall%20branding%20for%20my%20space.%0A%0A%F0%9F%93%8D%20Location%3A%0A%F0%9F%8F%A2%20Business%20Type%3A%0A%F0%9F%93%90%20Approx%20Wall%20Area%3A%0A%F0%9F%93%85%20Expected%20Completion%20Date%3A"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-6 rounded-full bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-medium text-center hover:from-violet-500 hover:to-cyan-500 transition-all duration-300 block"
+                className="w-full py-3 px-6 rounded-full bg-gradient-to-r from-[#C9A962] to-[#9A7B3D] text-white font-medium text-center hover:from-[#E8D5A3] hover:to-[#C9A962] transition-all duration-300 block"
               >
                 Start Project
               </a>

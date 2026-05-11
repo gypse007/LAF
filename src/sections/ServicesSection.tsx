@@ -100,7 +100,7 @@ function BentoCard({ service }: { service: (typeof services)[0] }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Light card background */}
-      <div className="absolute inset-0 rounded-[20px] sm:rounded-[28px] bg-[#f0eff4] group-hover:bg-[#e8e6f0] transition-colors duration-400" />
+      <div className="absolute inset-0 rounded-[20px] sm:rounded-[28px] bg-[#f5f3ec] group-hover:bg-[#ede9d8] transition-colors duration-400" />
 
       <div
         className={`
@@ -237,7 +237,7 @@ export default function ServicesSection() {
         <div ref={titleRef} className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 lg:gap-16 mb-12 sm:mb-16">
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.95] max-w-xl">
             <span className="text-gray-900">Our Services.</span><br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A962] via-[#E8D5A3] to-[#9A7B3D]">
               Built for Impact.
             </span>
           </h2>

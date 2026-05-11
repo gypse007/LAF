@@ -99,12 +99,12 @@ function ComparisonSlider({ beforeImage, afterImage, title, description, improve
 
         {/* Slider Line */}
         <div
-          className="absolute top-0 bottom-0 w-0.5 sm:w-1 bg-[#8B5CF6] cursor-ew-resize z-10"
+          className="absolute top-0 bottom-0 w-0.5 sm:w-1 bg-[#C9A962] cursor-ew-resize z-10"
           style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
         >
           {/* Slider Handle */}
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#8B5CF6] flex items-center justify-center shadow-[0_0_20px_rgba(139,92,246,0.5)] sm:shadow-[0_0_30px_rgba(139,92,246,0.5)] transition-transform duration-200 hover:scale-110"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#C9A962] flex items-center justify-center shadow-[0_0_20px_rgba(201,169,98,0.5)] sm:shadow-[0_0_30px_rgba(201,169,98,0.5)] transition-transform duration-200 hover:scale-110"
             onMouseDown={handleMouseDown}
             onTouchStart={handleMouseDown}
           >
@@ -120,7 +120,7 @@ function ComparisonSlider({ beforeImage, afterImage, title, description, improve
           Before
         </div>
         <div
-          className="absolute top-3 sm:top-6 right-3 sm:right-6 px-2 py-1 sm:px-4 sm:py-2 rounded-full bg-[#8B5CF6] text-black text-xs sm:text-sm font-medium transition-opacity duration-300"
+          className="absolute top-3 sm:top-6 right-3 sm:right-6 px-2 py-1 sm:px-4 sm:py-2 rounded-full bg-[#C9A962] text-black text-xs sm:text-sm font-medium transition-opacity duration-300"
           style={{ opacity: sliderPosition < 85 ? 1 : 0 }}
         >
           After
@@ -134,8 +134,8 @@ function ComparisonSlider({ beforeImage, afterImage, title, description, improve
             <h3 className="text-lg sm:text-xl font-bold text-white mb-1">{title}</h3>
             <p className="text-white/50 text-xs sm:text-sm">{description}</p>
           </div>
-          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#8B5CF6]/20 flex items-center justify-center flex-shrink-0">
-            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#8B5CF6]" />
+          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#C9A962]/20 flex items-center justify-center flex-shrink-0">
+            <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#C9A962]" />
           </div>
         </div>
 
@@ -144,7 +144,7 @@ function ComparisonSlider({ beforeImage, afterImage, title, description, improve
           {improvements.map((improvement, index) => (
             <span
               key={index}
-              className="inline-flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full bg-[#8B5CF6]/10 border border-[#8B5CF6]/30 text-[#8B5CF6] text-[10px] sm:text-xs"
+              className="inline-flex items-center gap-1 sm:gap-1.5 px-2 py-1 sm:px-3 sm:py-1.5 rounded-full bg-[#C9A962]/10 border border-[#C9A962]/30 text-[#C9A962] text-[10px] sm:text-xs"
             >
               <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
               {improvement}
@@ -229,19 +229,19 @@ export default function BeforeAfterSection() {
     >
       {/* Parallax Background */}
       <div className="ba-parallax-bg absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] bg-[#8B5CF6]/5 rounded-full blur-[100px] sm:blur-[180px]" />
+        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] bg-[#C9A962]/5 rounded-full blur-[100px] sm:blur-[180px]" />
         <div className="absolute bottom-1/4 left-1/3 w-[200px] h-[200px] sm:w-[400px] sm:h-[400px] bg-[#8B5CF6]/3 rounded-full blur-[80px] sm:blur-[120px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Title */}
         <div ref={titleRef} className="text-center mb-12 sm:mb-20">
-          <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#8B5CF6]/30 text-[#8B5CF6] text-xs sm:text-sm tracking-widest uppercase mb-4 sm:mb-6">
+          <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#C9A962]/30 text-[#C9A962] text-xs sm:text-sm tracking-widest uppercase mb-4 sm:mb-6">
             Transformations
           </span>
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
             <span className="text-white">Before & </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C9A962] to-[#E8D5A3]">
               After
             </span>
           </h2>
@@ -276,9 +276,9 @@ export default function BeforeAfterSection() {
           ].map((stat, index) => (
             <div
               key={index}
-              className="group text-center p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 hover:border-[#8B5CF6]/30 hover:bg-[#8B5CF6]/5 transition-all duration-500"
+              className="group text-center p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 hover:border-[#C9A962]/30 hover:bg-[#C9A962]/5 transition-all duration-500"
             >
-              <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-[#8B5CF6] mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300">
+              <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-[#C9A962] mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-300">
                 {stat.value}
               </div>
               <div className="text-white/50 text-xs sm:text-sm">{stat.label}</div>

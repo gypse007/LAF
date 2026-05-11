@@ -9,39 +9,39 @@ function Particles() {
   const [positions, velocities] = useMemo(() => {
     const positions = new Float32Array(count * 3);
     const velocities = new Float32Array(count * 3);
-    
+
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
       positions[i3] = (Math.random() - 0.5) * 20;
       positions[i3 + 1] = (Math.random() - 0.5) * 20;
       positions[i3 + 2] = (Math.random() - 0.5) * 10;
-      
+
       velocities[i3] = (Math.random() - 0.5) * 0.01;
       velocities[i3 + 1] = (Math.random() - 0.5) * 0.01;
       velocities[i3 + 2] = (Math.random() - 0.5) * 0.005;
     }
-    
+
     return [positions, velocities];
   }, []);
 
   useFrame((state) => {
     if (!meshRef.current) return;
-    
+
     const positionArray = meshRef.current.geometry.attributes.position.array as Float32Array;
-    
+
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
-      
+
       positionArray[i3] += velocities[i3];
       positionArray[i3 + 1] += velocities[i3 + 1];
       positionArray[i3 + 2] += velocities[i3 + 2];
-      
+
       // Boundary check
       if (Math.abs(positionArray[i3]) > 10) velocities[i3] *= -1;
       if (Math.abs(positionArray[i3 + 1]) > 10) velocities[i3 + 1] *= -1;
       if (Math.abs(positionArray[i3 + 2]) > 5) velocities[i3 + 2] *= -1;
     }
-    
+
     meshRef.current.geometry.attributes.position.needsUpdate = true;
     meshRef.current.rotation.y = state.clock.elapsedTime * 0.02;
   });
@@ -56,7 +56,7 @@ function Particles() {
       </bufferGeometry>
       <pointsMaterial
         size={0.05}
-        color="#8B5CF6"
+        color="#C9A962"
         transparent
         opacity={0.6}
         sizeAttenuation
@@ -70,16 +70,16 @@ function FloatingOrbs() {
 
   const orbs = useMemo(() => {
     return [
-      { position: [5, 3, -5], scale: 2, color: '#8B5CF6' },
-      { position: [-6, -2, -3], scale: 1.5, color: '#A78BFA' },
-      { position: [3, -4, -7], scale: 1, color: '#6D28D9' },
-      { position: [-4, 4, -6], scale: 1.2, color: '#8B5CF6' },
+      { position: [5, 3, -5], scale: 2, color: '#C9A962' },
+      { position: [-6, -2, -3], scale: 1.5, color: '#E8D5A3' },
+      { position: [3, -4, -7], scale: 1, color: '#9A7B3D' },
+      { position: [-4, 4, -6], scale: 1.2, color: '#C9A962' },
     ];
   }, []);
 
   useFrame((state) => {
     if (!groupRef.current) return;
-    
+
     groupRef.current.children.forEach((child, index) => {
       const time = state.clock.elapsedTime;
       child.position.y += Math.sin(time + index) * 0.002;

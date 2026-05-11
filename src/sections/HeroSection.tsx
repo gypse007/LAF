@@ -90,7 +90,7 @@ export default function HeroSection() {
           {/* Main Title */}
           <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-[0.9] tracking-tight">
             <span className="word inline-block">REDEFINING</span>{' '}
-            <span className="word inline-block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400">
+            <span className="word inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#E8D5A3] to-[#C9A962]">
               SPACES
             </span>
           </h1>

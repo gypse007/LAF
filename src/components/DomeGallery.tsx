@@ -182,7 +182,7 @@ export default function DomeGallery({
     const tapTargetRef = useRef<HTMLElement | null>(null);
     const openingRef = useRef(false);
     const openStartedAtRef = useRef(0);
-    const lastDragEndAt = useRef(performance.now());
+    const lastDragEndAt = useRef(0);
 
     const scrollLockedRef = useRef(false);
     const lockScroll = useCallback(() => {
@@ -199,12 +199,12 @@ export default function DomeGallery({
 
     const items = useMemo(() => buildItems(images, segments), [images, segments]);
 
-    const applyTransform = useCallback((xDeg: number, yDeg: number) => {
+    const applyTransform = (xDeg: number, yDeg: number) => {
         const el = sphereRef.current;
         if (el) {
             el.style.transform = `translateZ(calc(var(--radius) * -1)) rotateX(${xDeg}deg) rotateY(${yDeg}deg)`;
         }
-    }, []);
+    };
 
     const lockedRadiusRef = useRef<number | null>(null);
 
@@ -289,13 +289,12 @@ export default function DomeGallery({
         imageBorderRadius,
         openedImageBorderRadius,
         openedImageWidth,
-        openedImageHeight,
-        applyTransform
+        openedImageHeight
     ]);
 
     useEffect(() => {
         applyTransform(rotationRef.current.x, rotationRef.current.y);
-    }, [applyTransform]);
+    }, []);
 
     const stopInertia = useCallback(() => {
         if (inertiaRAF.current) {
@@ -334,134 +333,8 @@ export default function DomeGallery({
             stopInertia();
             inertiaRAF.current = requestAnimationFrame(step);
         },
-        [dragDampening, maxVerticalRotationDeg, stopInertia, applyTransform]
+        [dragDampening, maxVerticalRotationDeg, stopInertia]
     );
-
-    const openItemFromElement = useCallback((el: HTMLElement) => {
-        if (openingRef.current) return;
-        openingRef.current = true;
-        openStartedAtRef.current = performance.now();
-        lockScroll();
-        const parent = el.parentElement as HTMLElement;
-        focusedElRef.current = el;
-        el.setAttribute('data-focused', 'true');
-        const offsetX = getDataNumber(parent, 'offsetX', 0);
-        const offsetY = getDataNumber(parent, 'offsetY', 0);
-        const sizeX = getDataNumber(parent, 'sizeX', 2);
-        const sizeY = getDataNumber(parent, 'sizeY', 2);
-        const parentRot = computeItemBaseRotation(offsetX, offsetY, sizeX, sizeY, segments);
-        const parentY = normalizeAngle(parentRot.rotateY);
-        const globalY = normalizeAngle(rotationRef.current.y);
-        let rotY = -(parentY + globalY) % 360;
-        if (rotY < -180) rotY += 360;
-        const rotX = -parentRot.rotateX - rotationRef.current.x;
-        parent.style.setProperty('--rot-y-delta', `${rotY}deg`);
-        parent.style.setProperty('--rot-x-delta', `${rotX}deg`);
-        const refDiv = document.createElement('div');
-        refDiv.className = 'item__image item__image--reference opacity-0';
-        refDiv.style.transform = `rotateX(${-parentRot.rotateX}deg) rotateY(${-parentRot.rotateY}deg)`;
-        parent.appendChild(refDiv);
-
-        void refDiv.offsetHeight;
-
-        const tileR = refDiv.getBoundingClientRect();
-        const mainR = mainRef.current?.getBoundingClientRect();
-        const frameR = frameRef.current?.getBoundingClientRect();
-
-        if (!mainR || !frameR || tileR.width <= 0 || tileR.height <= 0) {
-            openingRef.current = false;
-            focusedElRef.current = null;
-            parent.removeChild(refDiv);
-            unlockScroll();
-            return;
-        }
-
-        originalTilePositionRef.current = {
-            left: tileR.left,
-            top: tileR.top,
-            width: tileR.width,
-            height: tileR.height
-        };
-        el.style.visibility = 'hidden';
-        (el.style as any).zIndex = 0;
-        const overlay = document.createElement('div');
-        overlay.className = 'enlarge';
-        overlay.style.cssText = `position:absolute; left:${frameR.left - mainR.left}px; top:${frameR.top - mainR.top}px; width:${frameR.width}px; height:${frameR.height}px; opacity:0; z-index:30; will-change:transform,opacity; transform-origin:top left; transition:transform ${enlargeTransitionMs}ms ease, opacity ${enlargeTransitionMs}ms ease; border-radius:${openedImageBorderRadius}; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.35);`;
-        const rawSrc = parent.dataset.src || (el.querySelector('img, video') as HTMLImageElement | HTMLVideoElement)?.src || '';
-        const rawAlt = parent.dataset.alt || (el.querySelector('img') as HTMLImageElement)?.alt || '';
-        const isVideo = rawSrc.toLowerCase().endsWith('.mp4') || rawSrc.toLowerCase().endsWith('.webm');
-
-        let mediaEl: HTMLImageElement | HTMLVideoElement;
-        if (isVideo) {
-            const video = document.createElement('video');
-            video.src = rawSrc;
-            video.autoplay = true;
-            video.loop = true;
-            video.muted = true;
-            video.playsInline = true;
-            mediaEl = video;
-            // Ensure video plays
-            video.play().catch(e => console.warn('Autoplay failed:', e));
-        } else {
-            const img = document.createElement('img');
-            img.src = rawSrc;
-            img.alt = rawAlt;
-            mediaEl = img;
-        }
-        mediaEl.style.cssText = `width:100%; height:100%; object-fit:contain; filter: none !important; background: rgba(0,0,0,0.8);`;
-        overlay.appendChild(mediaEl);
-        viewerRef.current!.appendChild(overlay);
-        const tx0 = tileR.left - frameR.left;
-        const ty0 = tileR.top - frameR.top;
-        const sx0 = tileR.width / frameR.width;
-        const sy0 = tileR.height / frameR.height;
-
-        const validSx0 = isFinite(sx0) && sx0 > 0 ? sx0 : 1;
-        const validSy0 = isFinite(sy0) && sy0 > 0 ? sy0 : 1;
-
-        overlay.style.transform = `translate(${tx0}px, ${ty0}px) scale(${validSx0}, ${validSy0})`;
-        setTimeout(() => {
-            if (!overlay.parentElement) return;
-            overlay.style.opacity = '1';
-            overlay.style.transform = 'translate(0px, 0px) scale(1, 1)';
-            rootRef.current?.setAttribute('data-enlarging', 'true');
-        }, 16);
-        const wantsResize = openedImageWidth || openedImageHeight;
-        if (wantsResize) {
-            const onFirstEnd = (ev: TransitionEvent) => {
-                if (ev.propertyName !== 'transform') return;
-                overlay.removeEventListener('transitionend', onFirstEnd);
-                const prevTransition = overlay.style.transition;
-                overlay.style.transition = 'none';
-                const tempWidth = openedImageWidth || `${frameR.width}px`;
-                const tempHeight = openedImageHeight || `${frameR.height}px`;
-                overlay.style.width = tempWidth;
-                overlay.style.height = tempHeight;
-                const newRect = overlay.getBoundingClientRect();
-                overlay.style.width = frameR.width + 'px';
-                overlay.style.height = frameR.height + 'px';
-                void overlay.offsetWidth;
-                overlay.style.transition = `left ${enlargeTransitionMs}ms ease, top ${enlargeTransitionMs}ms ease, width ${enlargeTransitionMs}ms ease, height ${enlargeTransitionMs}ms ease`;
-                const centeredLeft = frameR.left - mainR.left + (frameR.width - newRect.width) / 2;
-                const centeredTop = frameR.top - mainR.top + (frameR.height - newRect.height) / 2;
-                requestAnimationFrame(() => {
-                    overlay.style.left = `${centeredLeft}px`;
-                    overlay.style.top = `${centeredTop}px`;
-                    overlay.style.width = tempWidth;
-                    overlay.style.height = tempHeight;
-                });
-                const cleanupSecond = () => {
-                    overlay.removeEventListener('transitionend', cleanupSecond);
-                    overlay.style.transition = prevTransition;
-                };
-                overlay.addEventListener('transitionend', cleanupSecond, {
-                    once: true
-                });
-            };
-            overlay.addEventListener('transitionend', onFirstEnd);
-        }
-    }, [enlargeTransitionMs, grayscale, lockScroll, openedImageBorderRadius, openedImageHeight, openedImageWidth, segments, unlockScroll]);
-
 
     useGesture(
         {
@@ -615,18 +488,14 @@ export default function DomeGallery({
         pointer-events: none;
         margin: 0;
         transform: none;
-        filter: none;
+        filter: ${grayscale ? 'grayscale(1)' : 'none'};
       `;
 
-            const originalMedia = overlay.querySelector('img, video');
-            if (originalMedia) {
-                const media = originalMedia.cloneNode() as HTMLImageElement | HTMLVideoElement;
-                media.style.cssText = 'width: 100%; height: 100%; object-fit: cover;';
-                if (media instanceof HTMLVideoElement) {
-                    media.muted = true;
-                    media.play().catch(() => { });
-                }
-                animatingOverlay.appendChild(media);
+            const originalImg = overlay.querySelector('img');
+            if (originalImg) {
+                const img = originalImg.cloneNode() as HTMLImageElement;
+                img.style.cssText = 'width: 100%; height: 100%; object-fit: cover;';
+                animatingOverlay.appendChild(img);
             }
 
             overlay.remove();
@@ -696,6 +565,129 @@ export default function DomeGallery({
         };
     }, [enlargeTransitionMs, openedImageBorderRadius, grayscale]);
 
+    const openItemFromElement = (el: HTMLElement) => {
+        if (openingRef.current) return;
+        openingRef.current = true;
+        openStartedAtRef.current = performance.now();
+        lockScroll();
+        const parent = el.parentElement as HTMLElement;
+        focusedElRef.current = el;
+        el.setAttribute('data-focused', 'true');
+        const offsetX = getDataNumber(parent, 'offsetX', 0);
+        const offsetY = getDataNumber(parent, 'offsetY', 0);
+        const sizeX = getDataNumber(parent, 'sizeX', 2);
+        const sizeY = getDataNumber(parent, 'sizeY', 2);
+        const parentRot = computeItemBaseRotation(offsetX, offsetY, sizeX, sizeY, segments);
+        const parentY = normalizeAngle(parentRot.rotateY);
+        const globalY = normalizeAngle(rotationRef.current.y);
+        let rotY = -(parentY + globalY) % 360;
+        if (rotY < -180) rotY += 360;
+        const rotX = -parentRot.rotateX - rotationRef.current.x;
+        parent.style.setProperty('--rot-y-delta', `${rotY}deg`);
+        parent.style.setProperty('--rot-x-delta', `${rotX}deg`);
+        const refDiv = document.createElement('div');
+        refDiv.className = 'item__image item__image--reference opacity-0';
+        refDiv.style.transform = `rotateX(${-parentRot.rotateX}deg) rotateY(${-parentRot.rotateY}deg)`;
+        parent.appendChild(refDiv);
+
+        void refDiv.offsetHeight;
+
+        const tileR = refDiv.getBoundingClientRect();
+        const mainR = mainRef.current?.getBoundingClientRect();
+        const frameR = frameRef.current?.getBoundingClientRect();
+
+        if (!mainR || !frameR || tileR.width <= 0 || tileR.height <= 0) {
+            openingRef.current = false;
+            focusedElRef.current = null;
+            parent.removeChild(refDiv);
+            unlockScroll();
+            return;
+        }
+
+        originalTilePositionRef.current = {
+            left: tileR.left,
+            top: tileR.top,
+            width: tileR.width,
+            height: tileR.height
+        };
+        el.style.visibility = 'hidden';
+        (el.style as any).zIndex = 0;
+        const overlay = document.createElement('div');
+        overlay.className = 'enlarge';
+        overlay.style.cssText = `position:absolute; left:${frameR.left - mainR.left}px; top:${frameR.top - mainR.top}px; width:${frameR.width}px; height:${frameR.height}px; opacity:0; z-index:30; will-change:transform,opacity; transform-origin:top left; transition:transform ${enlargeTransitionMs}ms ease, opacity ${enlargeTransitionMs}ms ease; border-radius:${openedImageBorderRadius}; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.35);`;
+        const rawSrc = parent.dataset.src || (el.querySelector('img, video') as HTMLImageElement | HTMLVideoElement)?.src || '';
+        const rawAlt = parent.dataset.alt || (el.querySelector('img') as HTMLImageElement)?.alt || '';
+
+        let mediaEl: HTMLImageElement | HTMLVideoElement;
+        if (rawSrc.toLowerCase().endsWith('.mp4') || rawSrc.toLowerCase().endsWith('.webm')) {
+            const video = document.createElement('video');
+            video.src = rawSrc;
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;
+            video.setAttribute('playsinline', 'true');
+            mediaEl = video;
+        } else {
+            const img = document.createElement('img');
+            img.src = rawSrc;
+            img.alt = rawAlt;
+            mediaEl = img;
+        }
+
+        mediaEl.style.cssText = `width:100%; height:100%; object-fit:contain; filter:none;`;
+        overlay.appendChild(mediaEl);
+        viewerRef.current!.appendChild(overlay);
+        const tx0 = tileR.left - frameR.left;
+        const ty0 = tileR.top - frameR.top;
+        const sx0 = tileR.width / frameR.width;
+        const sy0 = tileR.height / frameR.height;
+
+        const validSx0 = isFinite(sx0) && sx0 > 0 ? sx0 : 1;
+        const validSy0 = isFinite(sy0) && sy0 > 0 ? sy0 : 1;
+
+        overlay.style.transform = `translate(${tx0}px, ${ty0}px) scale(${validSx0}, ${validSy0})`;
+        setTimeout(() => {
+            if (!overlay.parentElement) return;
+            overlay.style.opacity = '1';
+            overlay.style.transform = 'translate(0px, 0px) scale(1, 1)';
+            rootRef.current?.setAttribute('data-enlarging', 'true');
+        }, 16);
+        const wantsResize = openedImageWidth || openedImageHeight;
+        if (wantsResize) {
+            const onFirstEnd = (ev: TransitionEvent) => {
+                if (ev.propertyName !== 'transform') return;
+                overlay.removeEventListener('transitionend', onFirstEnd);
+                const prevTransition = overlay.style.transition;
+                overlay.style.transition = 'none';
+                const tempWidth = openedImageWidth || `${frameR.width}px`;
+                const tempHeight = openedImageHeight || `${frameR.height}px`;
+                overlay.style.width = tempWidth;
+                overlay.style.height = tempHeight;
+                const newRect = overlay.getBoundingClientRect();
+                overlay.style.width = frameR.width + 'px';
+                overlay.style.height = frameR.height + 'px';
+                void overlay.offsetWidth;
+                overlay.style.transition = `left ${enlargeTransitionMs}ms ease, top ${enlargeTransitionMs}ms ease, width ${enlargeTransitionMs}ms ease, height ${enlargeTransitionMs}ms ease`;
+                const centeredLeft = frameR.left - mainR.left + (frameR.width - newRect.width) / 2;
+                const centeredTop = frameR.top - mainR.top + (frameR.height - newRect.height) / 2;
+                requestAnimationFrame(() => {
+                    overlay.style.left = `${centeredLeft}px`;
+                    overlay.style.top = `${centeredTop}px`;
+                    overlay.style.width = tempWidth;
+                    overlay.style.height = tempHeight;
+                });
+                const cleanupSecond = () => {
+                    overlay.removeEventListener('transitionend', cleanupSecond);
+                    overlay.style.transition = prevTransition;
+                };
+                overlay.addEventListener('transitionend', cleanupSecond, {
+                    once: true
+                });
+            };
+            overlay.addEventListener('transitionend', onFirstEnd);
+        }
+    };
+
     useEffect(() => {
         return () => {
             document.body.classList.remove('dg-scroll-lock');
@@ -763,6 +755,16 @@ export default function DomeGallery({
       }
     }
     
+    // body.dg-scroll-lock {
+    //   position: fixed !important;
+    //   top: 0;
+    //   left: 0;
+    //   width: 100% !important;
+    //   height: 100% !important;
+    //   overflow: hidden !important;
+    //   touch-action: none !important;
+    //   overscroll-behavior: contain !important;
+    // }
     .item__image {
       position: absolute;
       inset: 10px;
@@ -771,17 +773,19 @@ export default function DomeGallery({
       cursor: pointer;
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
-      transition: transform 300ms;
+      transition: transform 300ms, filter 300ms;
       pointer-events: auto;
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
     }
-    .item__image img, .item__image video {
-      transition: filter 0.3s ease, transform 0.3s ease;
-    }
-    .item__image:hover img, .item__image:hover video {
+    .item__image:hover img,
+    .item__image:hover video {
       filter: none !important;
       transform: scale(1.05);
+    }
+    .item__image img,
+    .item__image video {
+      transition: filter 0.5s ease, transform 0.5s ease;
     }
     .item__image--reference {
       position: absolute;
@@ -877,8 +881,7 @@ export default function DomeGallery({
                                                 className="w-full h-full object-cover pointer-events-none"
                                                 style={{
                                                     backfaceVisibility: 'hidden',
-                                                    filter: `var(--image-filter, ${grayscale ? 'grayscale(1)' : 'none'})`,
-                                                    transition: 'filter 0.3s ease, transform 0.3s ease'
+                                                    filter: `var(--image-filter, ${grayscale ? 'grayscale(1)' : 'none'})`
                                                 }}
                                             />
                                         ) : (
@@ -889,8 +892,7 @@ export default function DomeGallery({
                                                 className="w-full h-full object-cover pointer-events-none"
                                                 style={{
                                                     backfaceVisibility: 'hidden',
-                                                    filter: `var(--image-filter, ${grayscale ? 'grayscale(1)' : 'none'})`,
-                                                    transition: 'filter 0.3s ease, transform 0.3s ease'
+                                                    filter: `var(--image-filter, ${grayscale ? 'grayscale(1)' : 'none'})`
                                                 }}
                                             />
                                         )}
