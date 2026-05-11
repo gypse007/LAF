@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CustomCursor from './components/CustomCursor';
@@ -14,6 +15,7 @@ import TechnologySection from './sections/TechnologySection';
 import BeforeAfterSection from './sections/BeforeAfterSection';
 import CTASection from './sections/CTASection';
 import Footer from './components/Footer';
+import InteriorsPage from './pages/InteriorsPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,6 +57,7 @@ const navItems = [
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const location = useLocation();
 
   const handleLoadComplete = useCallback(() => {
     setIsLoading(false);
@@ -129,14 +132,21 @@ function App() {
 
       {/* Main Content */}
       <main className={`relative z-10 transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
-        <HeroSection />
-        <ManifestoSection />
-        <ServicesSection />
-        <ProcessSection />
-        <WorkSection />
-        <TechnologySection />
-        <BeforeAfterSection />
-        <CTASection />
+        <Routes>
+          <Route path="/" element={
+            <>
+              <HeroSection />
+              <ManifestoSection />
+              <ServicesSection />
+              <ProcessSection />
+              <WorkSection />
+              <TechnologySection />
+              <BeforeAfterSection />
+              <CTASection />
+            </>
+          } />
+          <Route path="/interiors" element={<InteriorsPage />} />
+        </Routes>
         <Footer />
       </main>
     </div>
