@@ -1,7 +1,6 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { GoArrowUpRight } from 'react-icons/go';
-import { Link } from 'react-router-dom';
 
 type CardNavLink = {
     label: string;
@@ -196,13 +195,13 @@ const CardNav: React.FC<CardNavProps> = ({
                     {directLinks.length > 0 && (
                         <div className="hidden md:flex items-center gap-6 mr-4">
                             {directLinks.map((link) => (
-                                <Link
+                                <a
                                     key={link.label}
-                                    to={link.href}
+                                    href={link.href}
                                     className="text-sm font-medium text-[#1a1409] hover:text-[#C9A962] transition-colors"
                                 >
                                     {link.label}
-                                </Link>
+                                </a>
                             ))}
                         </div>
                     )}

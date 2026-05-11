@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CustomCursor from './components/CustomCursor';
@@ -11,12 +10,10 @@ import ManifestoSection from './sections/ManifestoSection';
 import ServicesSection from './sections/ServicesSection';
 import ProcessSection from './sections/ProcessSection';
 import WorkSection from './sections/WorkSection';
-import InteriorsSection from './sections/InteriorsSection';
 import TechnologySection from './sections/TechnologySection';
 import BeforeAfterSection from './sections/BeforeAfterSection';
 import CTASection from './sections/CTASection';
 import Footer from './components/Footer';
-import InteriorsPage from './pages/InteriorsPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,7 +54,6 @@ const navItems = [
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const location = useLocation();
 
   const handleLoadComplete = useCallback(() => {
     setIsLoading(false);
@@ -117,7 +113,7 @@ function App() {
         }}
       />
 
-      {/* CardNav — replaces Navigation - show on all pages */}
+      {/* CardNav — replaces Navigation */}
       <CardNav
         logo="/images/logo-no-bg.png"
         logoAlt="Lakshmi Art Fixers"
@@ -133,24 +129,16 @@ function App() {
         onCTAClick={handleCTAClick}
       />
 
-      {/* Main Content with Routing */}
+      {/* Main Content */}
       <main className={`relative z-10 transition-opacity duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
-        <Routes>
-          <Route path="/" element={
-            <>
-              <HeroSection />
-              <ManifestoSection />
-              <ServicesSection />
-              <ProcessSection />
-              <WorkSection />
-              <InteriorsSection />
-              <TechnologySection />
-              <BeforeAfterSection />
-              <CTASection />
-            </>
-          } />
-          <Route path="/interiors" element={<InteriorsPage />} />
-        </Routes>
+        <HeroSection />
+        <ManifestoSection />
+        <ServicesSection />
+        <ProcessSection />
+        <WorkSection />
+        <TechnologySection />
+        <BeforeAfterSection />
+        <CTASection />
         <Footer />
       </main>
     </div>

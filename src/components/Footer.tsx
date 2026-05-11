@@ -144,6 +144,9 @@ export default function Footer() {
               © 2026 Lakshmi Art Fixers. All rights reserved.
             </p>
             <div className="flex gap-4 sm:gap-6">
+              <a href="/interiors" className="text-gray-500 text-xs sm:text-sm hover:text-[#C9A962] transition-colors">
+                Interiors
+              </a>
               <a href="#" className="text-gray-500 text-xs sm:text-sm hover:text-[#C9A962] transition-colors">
                 Privacy Policy
               </a>
