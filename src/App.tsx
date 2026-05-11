@@ -28,6 +28,7 @@ const navItems = [
       { label: 'Wall Branding', href: '#services', ariaLabel: 'Wall Branding' },
       { label: 'Texture & Effects', href: '#services', ariaLabel: 'Texture and Effects' },
       { label: 'Commercial Spaces', href: '#services', ariaLabel: 'Commercial Spaces' },
+      { label: 'Interiors', href: '/interiors', ariaLabel: 'Home Interiors' },
     ],
   },
   {
@@ -118,9 +119,6 @@ function App() {
         logo="/images/logo-no-bg.png"
         logoAlt="Lakshmi Art Fixers"
         items={navItems}
-        directLinks={[
-          { label: 'Interiors', href: '/interiors' },
-        ]}
         baseColor="#ffffff"
         menuColor="#1a1409"
         buttonBgColor="#C9A962"

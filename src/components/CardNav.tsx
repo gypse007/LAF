@@ -19,7 +19,6 @@ export interface CardNavProps {
     logo: string;
     logoAlt?: string;
     items: CardNavItem[];
-    directLinks?: { label: string; href: string }[];
     className?: string;
     ease?: string;
     baseColor?: string;
@@ -33,7 +32,6 @@ const CardNav: React.FC<CardNavProps> = ({
     logo,
     logoAlt = 'Logo',
     items,
-    directLinks = [],
     className = '',
     ease = 'power3.out',
     menuColor,
@@ -190,21 +188,6 @@ const CardNav: React.FC<CardNavProps> = ({
                             style={{ height: '160px', width: 'auto', objectFit: 'contain', display: 'block' }}
                         />
                     </div>
-
-                    {/* Direct Links (e.g., Interiors) */}
-                    {directLinks.length > 0 && (
-                        <div className="hidden md:flex items-center gap-6 mr-4">
-                            {directLinks.map((link) => (
-                                <a
-                                    key={link.label}
-                                    href={link.href}
-                                    className="text-sm font-medium text-[#1a1409] hover:text-[#C9A962] transition-colors"
-                                >
-                                    {link.label}
-                                </a>
-                            ))}
-                        </div>
-                    )}
 
                     {/* CTA */}
                     <button
